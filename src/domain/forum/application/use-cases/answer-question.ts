@@ -8,6 +8,10 @@ interface AnswerQuestionUseCaseRequest {
   content: string;
 }
 
+interface AnswerQuestionUseCaseResponse {
+  answer: Answer;
+}
+
 export class AnswerQuestionUseCase {
   constructor(private anserRepository: AnswersRepository) {}
 
@@ -16,14 +20,14 @@ export class AnswerQuestionUseCase {
     questionId,
     content,
   }: AnswerQuestionUseCaseRequest) {
-    const anser = Answer.create({
+    const answer = Answer.create({
       content,
       authorId: new UniqueEntityID(instructorId),
       questionId: new UniqueEntityID(questionId),
     });
 
-    await this.anserRepository.create(anser);
+    await this.anserRepository.create(answer);
 
-    return anser;
+    return { answer };
   }
 }
