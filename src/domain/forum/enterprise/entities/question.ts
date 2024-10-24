@@ -38,7 +38,7 @@ export class Question extends AggregateRoot<QuestionProps> {
   }
 
   get attachments() {
-    return this.props.createdAt;
+    return this.props.attachments;
   }
 
   get createdAt() {
